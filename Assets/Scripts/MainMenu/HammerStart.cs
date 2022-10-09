@@ -31,11 +31,16 @@ public class HammerStart : MonoBehaviour
         
     }
 
+    public void OpenScene(int index)
+    {
+        StartCoroutine(nameof(MainMenuFadeOut), index);
+    }
+
     private void OnMouseDown()
     {
         if(IsStartedGame == false)
         {
-            StartCoroutine(nameof(MainMenuFadeOut));
+            OpenScene(1);
             _hammerStartSFX.Play();
         }
         
@@ -49,7 +54,7 @@ public class HammerStart : MonoBehaviour
     [SerializeField]
     float lerpDuration = 2.2f;
 
-    IEnumerator MainMenuFadeOut()
+    public IEnumerator MainMenuFadeOut(int sceneIndex)
     {
         IsStartedGame = true;
 
@@ -65,7 +70,7 @@ public class HammerStart : MonoBehaviour
         MainMenuFadeOutImage.color = endColor;
 
         //yield return new WaitForSeconds(3);
-        SceneManager.LoadScene(1);
+        SceneManager.LoadScene(sceneIndex);
 
     }
 
