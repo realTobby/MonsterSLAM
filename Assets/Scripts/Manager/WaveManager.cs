@@ -113,7 +113,7 @@ public class WaveManager : MonoBehaviour
         {
             IsWaveCompleted = true;
 
-            if(AutoStart)
+            if(AutoStart && GameManager.Instance.IsGamePaused == false)
             {
                 StartNextWave();
             }

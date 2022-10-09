@@ -36,7 +36,13 @@ public class HammerHitBox : MonoBehaviour
         if (!other.transform.CompareTag("Hammer"))
         {
             Vector3 vfxSpawnPos = new Vector3(other.transform.position.x, 1.53f, other.transform.position.z);
-            Instantiate(HitEffect, vfxSpawnPos, Quaternion.identity);
+
+            if(!other.transform.CompareTag("SpawnedMonster"))
+            {
+                Instantiate(HitEffect, vfxSpawnPos, Quaternion.identity);
+            }
+
+            
             CameraShaker.Shake(.4f, 8f);
             _hammerSFX.pitch = (Random.Range(0.6f, .9f));
             _hammerSFX.Play();

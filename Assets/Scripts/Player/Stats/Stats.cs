@@ -5,6 +5,9 @@ using UnityEngine;
 [CreateAssetMenu(menuName = "Stats")]
 public class Stats : ScriptableObject
 {
+    public int NextLevelXP;
+    public int CurrentXP;
+
     public float MaxHP = 10;
     public float HP = 10;
     public int Durability = 1;
@@ -18,6 +21,8 @@ public class Stats : ScriptableObject
         Durability = 1;
         Speed = 15;
         Damage = 1;
+        NextLevelXP = 10;
+        CurrentXP = 0;
     }
 
 }

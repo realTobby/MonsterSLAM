@@ -21,9 +21,25 @@ public class GameManager : MonoBehaviour
 
     public GameObject PlayerGameObject;
 
+    public GameObject PREFAB_XPGEM;
+
+    public bool IsGamePaused = false;
+
+    public void PauseGame()
+    {
+        IsGamePaused = true;
+    }
+
+    public void UnpauseGame()
+    {
+        IsGamePaused = false;
+    }
+
     private void Awake()
     {
         _instance = this;
+
+        PlayerStats.Instance.OnLevelUp += PauseGame;
 
         PlayerGameObject = GameObject.FindGameObjectWithTag("Hammer");
 
@@ -36,7 +52,7 @@ public class GameManager : MonoBehaviour
 
     private void PlayBonusDecreaseAnimation()
     {
-        if(UI_MONSTER_BONUS.IsActive())
+        if(UI_MONSTER_BONUS.IsActive() && IsGamePaused == false)
             UI_MONSTER_BONUS.gameObject.GetComponent<Animator>().Play("monsterChainTimerDecrease");
     }
 
@@ -70,7 +86,10 @@ public class GameManager : MonoBehaviour
 
         while (currentChainTime > 0)
         {
-            currentChainTime -= Time.deltaTime;
+            if(IsGamePaused == false)
+            {
+                currentChainTime -= Time.deltaTime;
+            }
             yield return null;
         }
 

@@ -7,6 +7,8 @@ using UnityEngine.EventSystems;
 
 public class Hammer : MonoBehaviour
 {
+    public AudioSource COIN_PICKUP;
+
     internal Animator _hammerAnimator;
     Rigidbody _hammerRigidbody;
     
@@ -18,6 +20,8 @@ public class Hammer : MonoBehaviour
 
     private void Awake()
     {
+        COIN_PICKUP = GetComponent<AudioSource>();
+
         _hammerHitBox = transform.GetComponentInChildren<HammerHitBox>();
         _hammerHitBox.gameObject.SetActive(false);
 
@@ -44,9 +48,12 @@ public class Hammer : MonoBehaviour
     public void Update()
     {
         // Cursor.visible = false;
-        RotateHammerTowardsMouse();
-
-        Move();
+        if(GameManager.Instance.IsGamePaused == false)
+        {
+            RotateHammerTowardsMouse();
+            Move();
+        }
+        
         
     }
 
@@ -71,8 +78,15 @@ public class Hammer : MonoBehaviour
     private void FixedUpdate()
     {
         // _hammerRigidbody.MovePosition(_hammerRigidbody.position + transform.TransformDirection(_moveAmount) * Time.fixedDeltaTime);
-
-        _hammerRigidbody.velocity = _moveAmount + transform.TransformDirection(_moveAmount) * Time.fixedDeltaTime;
+        if (GameManager.Instance.IsGamePaused == false)
+        {
+            _hammerRigidbody.velocity = _moveAmount + transform.TransformDirection(_moveAmount) * Time.fixedDeltaTime;
+        }
+        else
+        {
+            _hammerRigidbody.velocity = Vector3.zero;
+        }
+        
     }
 
     void OnCollisionEnter(Collision collision)
@@ -80,6 +94,20 @@ public class Hammer : MonoBehaviour
         if (collision.gameObject.CompareTag("Wall"))
         {
             _hammerRigidbody.velocity = Vector3.zero;
+        }
+
+       
+    }
+
+
+    private void OnTriggerEnter(Collider other)
+    {
+        if (other.transform.CompareTag("XPGEM"))
+        {
+            COIN_PICKUP.pitch = (Random.Range(0.6f, .9f));
+            COIN_PICKUP.Play();
+            PlayerStats.Instance.Stats.CurrentXP++;
+            Destroy(other.gameObject);
         }
     }
 

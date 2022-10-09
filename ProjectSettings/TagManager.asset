@@ -10,6 +10,8 @@ TagManager:
   - SpawnedMonster
   - Portal
   - Knockback
+  - FlyingHammer
+  - XPGEM
   layers:
   - Default
   - TransparentFX

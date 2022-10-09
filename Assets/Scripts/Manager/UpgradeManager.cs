@@ -6,20 +6,24 @@ public class UpgradeManager : MonoBehaviour
 {
     public GameObject UI_UPGRADE_WINDOW;
     public GameObject UI_BUTTON_UPGRADES;
-    public TMPro.TextMeshProUGUI PointsToSpendText;
+    //public TMPro.TextMeshProUGUI PointsToSpendText;
     public int PointsToSpend = 0;
 
     public int WaveRewardThreshhold = 5;
 
+    
+
     private void Awake()
     {
+        PlayerStats.Instance.OnLevelUp += OpenUpgradeWindow;
+
         GameManager.Instance.WaveManager.OnWaveStart += OnWaveStart;
         GameManager.Instance.WaveManager.OnWaveEnd += OnWaveEnd;
     }
 
     private void Update()
     {
-        PointsToSpendText.text = "Points to Spend: " + System.Environment.NewLine + PointsToSpend;
+        //PointsToSpendText.text = "Points to Spend: " + System.Environment.NewLine + PointsToSpend;
     }
 
     private void OnWaveStart()
@@ -52,6 +56,7 @@ public class UpgradeManager : MonoBehaviour
     public void CloseUpgradeWindow()
     {
         UI_UPGRADE_WINDOW.SetActive(false);
+        GameManager.Instance.UnpauseGame();
     }
 
 }

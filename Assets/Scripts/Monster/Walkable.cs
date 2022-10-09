@@ -32,10 +32,20 @@ public class Walkable : MonoBehaviour
 
     private void FixedUpdate()
     {
-        var desiredVelocity = direction * speed;
-        var deltaVelocity = desiredVelocity - rigidbody.velocity;
-        Vector3 moveForce = deltaVelocity * (force * ForcePower * Time.fixedDeltaTime);
-        rigidbody.AddForce(moveForce);
+        if(GameManager.Instance.IsGamePaused == false)
+        {
+            var desiredVelocity = direction * speed;
+            var deltaVelocity = desiredVelocity - rigidbody.velocity;
+            Vector3 moveForce = deltaVelocity * (force * ForcePower * Time.fixedDeltaTime);
+            rigidbody.AddForce(moveForce);
+        }
+        else
+        {
+            rigidbody.velocity = Vector3.zero;
+        }
         
     }
+
+
+
 }
