@@ -5,6 +5,13 @@ using UnityEngine;
 [CreateAssetMenu(menuName = "Abilities/KnockbackSwing")]
 public class KnockbackSwing : Ability
 {
+
+    public override void InitBaseStats()
+    {
+        Damage = 1;
+        Luck = 1;
+    }
+
     public override void Execute(GameObject target)
     {
         target.GetComponent<Hammer>().KnockbackHitbox.gameObject.SetActive(true);

@@ -21,6 +21,11 @@ public class AbilityManager : MonoBehaviour
 
     public KeyCode Key;
 
+    private void Awake()
+    {
+        ability.InitBaseStats();
+    }
+
     // Update is called once per frame
     void Update()
     {
@@ -32,6 +37,7 @@ public class AbilityManager : MonoBehaviour
                     if (Input.GetKeyDown(Key) && EventSystem.current.IsPointerOverGameObject() == false)
                     {
                         ability.Execute(GameManager.Instance.PlayerGameObject);
+                        //GameManager.Instance.SecondaryAbility.ability.Execute(GameManager.Instance.PlayerGameObject);
                         CurrentState = AbilityState.Active;
                         activeTime = ability.ActiveTime;
                     }

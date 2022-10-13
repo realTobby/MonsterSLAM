@@ -1,0 +1,123 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1 &4288693799321884161
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 6475804836427264172}
+  - component: {fileID: 1693692688894807294}
+  m_Layer: 2
+  m_Name: RommEnterTrigger
+  m_TagString: RoomEnterTrigger
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &6475804836427264172
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4288693799321884161}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 3.36, y: 0, z: 3.11}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 9113976222802280109}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!135 &1693692688894807294
+SphereCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4288693799321884161}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Radius: 7.03
+  m_Center: {x: 5, y: 0, z: 5}
+--- !u!1 &4986516344528272212
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 9113976222802280109}
+  - component: {fileID: 7765930662456489277}
+  - component: {fileID: 3795640897447043628}
+  m_Layer: 2
+  m_Name: Room
+  m_TagString: Room
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &9113976222802280109
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4986516344528272212}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children:
+  - {fileID: 6475804836427264172}
+  m_Father: {fileID: 0}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &7765930662456489277
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4986516344528272212}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9d1514308bfae6d4891748cf47d0ec95, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  RoomWasEntered: 0
+  Width: 0
+  Height: 0
+  GAMEOBJECT_PATHENTRY: {fileID: 0}
+  GAMEOBJECT_PATHEXIT: {fileID: 0}
+  PREFAB_PATH: {fileID: 4680622070751861580, guid: 83e0f55ec3d67cb419aaa7edc4c07928, type: 3}
+  PREFAB_ROOMTILE: {fileID: 4250553678721717363, guid: ba5db1750df8706469534bb911c41bf8, type: 3}
+  PREFAB_PATHDOOR: {fileID: 3090289276509508440, guid: 34708edb3ff0e0941a0069bccd4c21f1, type: 3}
+  RoomEnterTrigger: {fileID: 4288693799321884161}
+  IsStartingRoom: 0
+  PathExitPosition: {x: 0, y: 0, z: 0}
+  triggerCenter: {x: 0, y: 0, z: 0}
+  RoomCleared: 0
+  StartingPoint: {x: 0, y: 0, z: 0}
+  NextRoomInterfacePosition: {x: 0, y: 0, z: 0}
+  ExitPathStart: {x: 0, y: 0, z: 0}
+  PlayerTeleportSpot: {x: 0, y: 0, z: 0}
+--- !u!65 &3795640897447043628
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4986516344528272212}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 1, y: 1, z: 1}
+  m_Center: {x: 0, y: 0, z: 0}

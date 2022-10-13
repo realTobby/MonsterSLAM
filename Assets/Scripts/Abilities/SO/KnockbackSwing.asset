@@ -13,5 +13,8 @@ MonoBehaviour:
   m_Name: KnockbackSwing
   m_EditorClassIdentifier: 
   Name: KnockbackSwing
-  CooldownTime: 3
-  ActiveTime: 0.1
+  CooldownTime: 1
+  ActiveTime: 5
+  Damage: 1
+  Radius: 0
+  Luck: 1

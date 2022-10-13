@@ -2,23 +2,15 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+[DefaultExecutionOrder(2500)]
 public class UpgradeManager : MonoBehaviour
 {
     public GameObject UI_UPGRADE_WINDOW;
-    public GameObject UI_BUTTON_UPGRADES;
-    //public TMPro.TextMeshProUGUI PointsToSpendText;
-    public int PointsToSpend = 0;
-
-    public int WaveRewardThreshhold = 5;
-
-    
 
     private void Awake()
     {
         PlayerStats.Instance.OnLevelUp += OpenUpgradeWindow;
-
         GameManager.Instance.WaveManager.OnWaveStart += OnWaveStart;
-        GameManager.Instance.WaveManager.OnWaveEnd += OnWaveEnd;
     }
 
     private void Update()
@@ -29,23 +21,7 @@ public class UpgradeManager : MonoBehaviour
     private void OnWaveStart()
     {
         CloseUpgradeWindow();
-        UI_BUTTON_UPGRADES.SetActive(false);
-    }
-
-    private void OnWaveEnd()
-    {
-        // check if current wave is equal to a wave-threshhold to gain Points for BaseStats!
-        WaveRewardThreshhold--;
-        if(WaveRewardThreshhold == 0)
-        {
-            WaveRewardThreshhold = 5;
-            PointsToSpend += 1;
-        }
-
-        if(PointsToSpend > 0)
-        {
-            UI_BUTTON_UPGRADES.SetActive(true);
-        }
+        UI_UPGRADE_WINDOW.SetActive(false);
     }
 
     public void OpenUpgradeWindow()
@@ -57,6 +33,24 @@ public class UpgradeManager : MonoBehaviour
     {
         UI_UPGRADE_WINDOW.SetActive(false);
         GameManager.Instance.UnpauseGame();
+    }
+
+
+    public void UpgradeDamage()
+    {
+        GameManager.Instance.MainAbility.ability.Damage += 2;
+        GameManager.Instance.SecondaryAbility.ability.Damage += 2;
+    }
+
+    public void UpgradeHP()
+    {
+        PlayerStats.Instance.Stats.HP = PlayerStats.Instance.Stats.MaxHP;
+    }
+
+    public void UpgradeLuck()
+    {
+        GameManager.Instance.MainAbility.ability.Luck += 2;
+        GameManager.Instance.SecondaryAbility.ability.Luck += 2;
     }
 
 }

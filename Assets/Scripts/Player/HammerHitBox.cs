@@ -33,7 +33,7 @@ public class HammerHitBox : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        if (!other.transform.CompareTag("Hammer"))
+        if (!other.transform.CompareTag("Hammer") && !other.transform.CompareTag("RoomEnterTrigger"))
         {
             Vector3 vfxSpawnPos = new Vector3(other.transform.position.x, 1.53f, other.transform.position.z);
 

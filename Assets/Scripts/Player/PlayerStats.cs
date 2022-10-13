@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class PlayerStats : MonoBehaviour
 {
@@ -17,8 +18,11 @@ public class PlayerStats : MonoBehaviour
     private void Awake()
     {
         _instance = this;
+
     }
 
+
+   
     public Stats Stats;
 
     private void Update()
@@ -28,7 +32,15 @@ public class PlayerStats : MonoBehaviour
         PLAYERXP_UI.text = $"XP: {Stats.CurrentXP}/{Stats.NextLevelXP}";
 
         CheckLevelUp();
+        CheckForUnalive();
+    }
 
+    private void CheckForUnalive()
+    {
+        if(Stats.HP <= 0)
+        {
+            SceneManager.LoadScene(3);
+        }
     }
 
     private void CheckLevelUp()

@@ -12,6 +12,8 @@ TagManager:
   - Knockback
   - FlyingHammer
   - XPGEM
+  - RoomEnterTrigger
+  - Room
   layers:
   - Default
   - TransparentFX

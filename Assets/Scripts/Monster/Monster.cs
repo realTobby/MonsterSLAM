@@ -15,7 +15,7 @@ public class Monster : MonoBehaviour
     private void Awake()
     {
         target = GameObject.FindGameObjectWithTag("Hammer").transform;
-        walkable = GetComponent<Walkable>();
+        walkable = GetComponent<Walkable>() != null ? GetComponent<Walkable>() : null;
     }
 
     public void InitMonster(int mMaxHP)
@@ -25,48 +25,66 @@ public class Monster : MonoBehaviour
     }
 
     private bool IsAttacking = false;
-    private float AttackDelay = 1;
+    public float AttackDelay = 1;
+
+    public bool LeftPlayerTrigger = false;
 
     private void OnTriggerEnter(Collider other)
     {
-        if(GameManager.Instance.IsGamePaused == false)
+        if (GameManager.Instance.IsGamePaused == false)
         {
-            if (other.transform.CompareTag("HammerHitbox"))
+            Debug.Log("Collision with: " + other.transform.tag);
+            if (other.transform.CompareTag("HammerHitbox") || other.transform.CompareTag("FlyingHammer"))
             {
-                HP -= PlayerStats.Instance.Stats.Damage;
+                HP -= GameManager.Instance.MainAbility.ability.Damage;
+                //var vfx = Instantiate(ExplodeEffect, this.transform.position, Quaternion.identity);
+            }
+
+            if(other.transform.CompareTag("FlyingHammer"))
+            {
                 var vfx = Instantiate(ExplodeEffect, this.transform.position, Quaternion.identity);
             }
 
             if (other.transform.CompareTag("Knockback"))
             {
-
-
                 Vector3 direction = ((transform.position - other.transform.position).normalized);
                 direction.y = 0;
 
                 walkable.rigidbody.AddForce(direction * 6000);
 
-                var vfx = Instantiate(ExplodeEffect, this.transform.position, Quaternion.identity);
+                //var vfx = Instantiate(ExplodeEffect, this.transform.position, Quaternion.identity);
 
-                HP -= PlayerStats.Instance.Stats.Damage;
+                HP -= GameManager.Instance.SecondaryAbility.ability.Damage;
             }
 
             if (other.transform.CompareTag("Hammer"))
             {
                 if (IsAttacking == false)
                 {
+                    LeftPlayerTrigger = false;
                     StartCoroutine(nameof(AttackPlayer));
                 }
             }
         }
     }
 
+    private void OnTriggerExit(Collider other)
+    {
+        if(other.transform.CompareTag("HammerHitbox"))
+        {
+            LeftPlayerTrigger = true;
+        }
+    }
+
     IEnumerator AttackPlayer()
     {
-        IsAttacking = true;
-        yield return new WaitForSeconds(AttackDelay);
-        PlayerStats.Instance.Stats.HP -= 1;
-        IsAttacking = false;
+        while(LeftPlayerTrigger == false)
+        {
+            IsAttacking = true;
+            yield return new WaitForSeconds(AttackDelay);
+            PlayerStats.Instance.Stats.HP -= 1;
+            IsAttacking = false;
+        }
     }
 
 
@@ -90,17 +108,23 @@ public class Monster : MonoBehaviour
         if(HP <= 0)
         {
             // lucky roll for xpgem
-            int luckyThreshhold = Random.Range(0, 100);
 
-            if(luckyThreshhold >= 60)
+            int luckyRerolls = GameManager.Instance.MainAbility.ability.Luck;
+
+
+            for (int i = 0; i < luckyRerolls; i++)
             {
-                Instantiate(GameManager.Instance.PREFAB_XPGEM, this.transform.position, Quaternion.Euler(-90, 0, 90));
+                int luckyThreshhold = Random.Range(0, 100);
+
+                if (luckyThreshhold >= 60)
+                {
+                    Instantiate(GameManager.Instance.PREFAB_XPGEM, this.transform.position, Quaternion.Euler(-90, 0, 90));
+                }
             }
-
-
             var vfx = Instantiate(ExplodeEffect, this.transform.position, Quaternion.identity);
             GameManager.Instance.GainScore(1);
             GameManager.Instance.GainChainBonus();
+
             Destroy(this.gameObject);
         }
         

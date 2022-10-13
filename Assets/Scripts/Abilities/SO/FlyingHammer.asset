@@ -15,5 +15,8 @@ MonoBehaviour:
   Name: FlyingHammer
   CooldownTime: 1
   ActiveTime: 5
+  Damage: 1
+  Radius: 0
+  Luck: 1
   PREFAB_FLYING_HAMMER: {fileID: 6955548083856268690, guid: 02b4196f98a77ba4eaf88334896c9dcd, type: 3}
   MaxBounces: 10

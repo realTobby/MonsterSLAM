@@ -17,7 +17,7 @@ public class SimpleCheckBox : MonoBehaviour, IPointerClickHandler
     {
         Debug.Log("Maybe I clicked the CheckBox...");
         IsChecked = !IsChecked;
-        GameManager.Instance.WaveManager.AutoStart = IsChecked;
+        //GameManager.Instance.WaveManager.AutoStart = IsChecked;
         RepaintCheckbox();
     }
 

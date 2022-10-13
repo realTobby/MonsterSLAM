@@ -16,8 +16,8 @@ public class Stats : ScriptableObject
 
     public void RestartStats()
     {
-        MaxHP = 10;
-        HP = 10;
+        MaxHP = 100;
+        HP = 100;
         Durability = 1;
         Speed = 15;
         Damage = 1;

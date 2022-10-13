@@ -4,7 +4,7 @@ using UnityEngine;
 using UnityEngine.EventSystems;
 
 [RequireComponent(typeof(Rigidbody))]
-
+[DefaultExecutionOrder(2000)]
 public class Hammer : MonoBehaviour
 {
     public AudioSource COIN_PICKUP;
@@ -48,11 +48,15 @@ public class Hammer : MonoBehaviour
     public void Update()
     {
         // Cursor.visible = false;
-        if(GameManager.Instance.IsGamePaused == false)
+        if(GameManager.Instance != null)
         {
-            RotateHammerTowardsMouse();
-            Move();
+            if (GameManager.Instance.IsGamePaused == false)
+            {
+                RotateHammerTowardsMouse();
+                Move();
+            }
         }
+        
         
         
     }
@@ -85,8 +89,7 @@ public class Hammer : MonoBehaviour
         else
         {
             _hammerRigidbody.velocity = Vector3.zero;
-        }
-        
+        }       
     }
 
     void OnCollisionEnter(Collision collision)
@@ -95,10 +98,7 @@ public class Hammer : MonoBehaviour
         {
             _hammerRigidbody.velocity = Vector3.zero;
         }
-
-       
     }
-
 
     private void OnTriggerEnter(Collider other)
     {
@@ -108,6 +108,19 @@ public class Hammer : MonoBehaviour
             COIN_PICKUP.Play();
             PlayerStats.Instance.Stats.CurrentXP++;
             Destroy(other.gameObject);
+        }
+
+        if(other.transform.CompareTag("RoomEnterTrigger"))
+        {
+            other.transform.parent.GetComponent<DungeonRoom>().EnterRoom();
+        }
+    }
+
+    private void OnTriggerExit(Collider other)
+    {
+        if(other.transform.CompareTag("Room"))
+        {
+            other.GetComponent<DungeonRoom>().TeleportBack();
         }
     }
 

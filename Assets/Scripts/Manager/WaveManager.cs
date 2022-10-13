@@ -5,8 +5,6 @@ using UnityEngine;
 
 public class WaveManager : MonoBehaviour
 {
-    public int MonsterCount = 0;
-
     public GameObject PREFAB_SPAWN_VFX;
     public GameObject PREFAB_MONSTER;
     public GameObject PREFAB_MONSTER_PORTAL;
@@ -15,10 +13,10 @@ public class WaveManager : MonoBehaviour
     public TMPro.TextMeshProUGUI UI_WAVECOUNT;
 
     public int WaveCount = 1;
-
-    public bool AutoStart = false;
+    public int CurrentMonsterCount = 0;
 
     public bool IsWaveCompleted = false;
+
 
     public System.Action OnWaveStart;
     public System.Action OnWaveEnd;
@@ -35,64 +33,40 @@ public class WaveManager : MonoBehaviour
 
     public void StartNextWave()
     {
+        KilledAllMonsters = false;
+        IsWaveCompleted = false;
         HideWaveControls();
         OnWaveStart?.Invoke();
         PrepareAndSpawnWave();       
     }
 
-    IEnumerator SpawnMonsterWithDelay(Dictionary<int, Vector3> positions)
-    {
-        foreach (var m in positions)
-        {
-            var monster = Instantiate(PREFAB_MONSTER, m.Value, Quaternion.identity);
-            monster.GetComponent<Monster>().InitMonster(Mathf.FloorToInt(WaveCount / 2) > 0 ? Mathf.FloorToInt(WaveCount / 2) : 1);
-            monster.transform.tag = "SpawnedMonster";
-            yield return new WaitForSeconds(.5f);
-        }
-
-        var portals = GameObject.FindGameObjectsWithTag("Portal");
-        foreach(var item in portals.ToList())
-        {
-            Destroy(item);
-        }
-        IsWaveCompleted = false;
-        WaveCount++;
-    }
-
     private void PrepareAndSpawnWave()
     {
-        Debug.Log("PrepareAndSpawnWave invoked");
-        // 2-3 random portals
-        // every portal spawns a number of enemies with a delay
-
-        List<Vector3> SpawnPositions = new List<Vector3>();
-
-        int portalCount = Random.Range(1, 4);
-
-        for(int p = 0; p < portalCount; p++)
+        for(int i = 0; i < WaveCount+1; i++)
         {
-            SpawnPositions.Add(RandomPositionInsideArena());
-            Instantiate(PREFAB_MONSTER_PORTAL, SpawnPositions[p], Quaternion.identity);
+            var pos = RandomPositionInsideArena();
+            Instantiate(PREFAB_SPAWN_VFX, pos, Quaternion.identity);
+            var monster = Instantiate(PREFAB_MONSTER, pos, Quaternion.identity);
+            monster.GetComponent<Monster>().InitMonster(Mathf.FloorToInt(WaveCount / 2) > 0 ? Mathf.FloorToInt(WaveCount / 2) : 1);
+            monster.transform.tag = "SpawnedMonster";
         }
-
-        Dictionary<int, Vector3> MonsterSpawnPositions = new Dictionary<int, Vector3>();
-
-        for(int m = 0; m < WaveCount+1; m++)
-        {
-            Vector3 randomPortal = SpawnPositions[Random.Range(0, SpawnPositions.Count)];
-            MonsterSpawnPositions.Add(m, randomPortal);
-        }
-        StartCoroutine(nameof(SpawnMonsterWithDelay), MonsterSpawnPositions);
+        WaveCount++;
     }
 
     private Vector3 RandomPositionInsideArena()
     {
-        return new Vector3(Random.Range(-14f, 12), 1, Random.Range(-16, 10));
+        Vector3 arenaCenter = GameManager.Instance.DungeonRoomSpawner.CurrentRoom.GetComponent<DungeonRoom>().StartingPoint;
+        int roomW = GameManager.Instance.DungeonRoomSpawner.CurrentRoom.GetComponent<DungeonRoom>().Width;
+        int roomH = GameManager.Instance.DungeonRoomSpawner.CurrentRoom.GetComponent<DungeonRoom>().Height;
+
+        Vector3 pos = new Vector3(Random.Range((arenaCenter.x+2)*2, (arenaCenter.x+roomW-2)*2),1, Random.Range((arenaCenter.z+2)*2, (arenaCenter.z + roomH - 2)*2));
+
+        return pos;/*new Vector3(Random.Range(-14f, 12), 1, Random.Range(-16, 10));*/
     }
 
     private void CheckForInput()
     {
-        if(IsWaveCompleted == true && MonsterCount == 0)
+        if(IsWaveCompleted == true)
         {
             if (Input.GetKeyDown(KeyCode.Space))
             {
@@ -101,28 +75,27 @@ public class WaveManager : MonoBehaviour
         }
     }
 
+    public bool KilledAllMonsters = false;
+
     private void Update()
     {
         UI_WAVECOUNT.text = "Wave: " + WaveCount;
 
-        MonsterCount = GameObject.FindGameObjectsWithTag("SpawnedMonster").Length;
+        CurrentMonsterCount = GameObject.FindGameObjectsWithTag("SpawnedMonster").Length;
 
         CheckForInput();
 
-        if(IsWaveCompleted == false && MonsterCount == 0)
+        if(IsWaveCompleted == false && CurrentMonsterCount == 0)
         {
-            IsWaveCompleted = true;
-
-            if(AutoStart && GameManager.Instance.IsGamePaused == false)
+            if(WaveCount > 0)
             {
-                StartNextWave();
-            }
-            else
-            {
-                ShowWaveControls();
+                GameManager.Instance.DungeonRoomSpawner.CurrentRoom.RoomCleared = true;
                 OnWaveEnd?.Invoke();
             }
+            IsWaveCompleted = true;
+            KilledAllMonsters = true;
         }
+
     }
 
 }

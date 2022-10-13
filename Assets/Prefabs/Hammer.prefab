@@ -40,7 +40,7 @@ SphereCollider:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 256234804910733281}
   m_Material: {fileID: 0}
-  m_IsTrigger: 1
+  m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
   m_Radius: 1.07
@@ -225,7 +225,7 @@ BoxCollider:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 4772413471479047370}
   m_Material: {fileID: 0}
-  m_IsTrigger: 1
+  m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
   m_Size: {x: 1.0418239, y: 1.0529451, z: 1.5820374}
@@ -390,6 +390,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   PLAYERHP_UI: {fileID: 0}
+  PLAYERXP_UI: {fileID: 0}
+  LEVEL_UP_SFX: {fileID: 0}
   Stats: {fileID: 11400000, guid: e34d9b5c5bc0a064bb996ccf8d903a02, type: 2}
 --- !u!114 &769893940881096888
 MonoBehaviour:
@@ -403,6 +405,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4e4cd72e536464b419672ed7c6eaac8d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  COIN_PICKUP: {fileID: 0}
   KnockbackHitbox: {fileID: 256234804910733281}
 --- !u!54 &4419552901921085320
 Rigidbody:

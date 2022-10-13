@@ -165,6 +165,8 @@ MonoBehaviour:
   ExplodeEffect: {fileID: 3797371947334087584, guid: 2e766ffef40882e449c3da6818f65683, type: 3}
   MaxHP: 0
   HP: 0
+  AttackDelay: 0.2
+  LeftPlayerTrigger: 0
 --- !u!114 &5485951577744404868
 MonoBehaviour:
   m_ObjectHideFlags: 0

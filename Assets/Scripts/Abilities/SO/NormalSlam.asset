@@ -13,5 +13,8 @@ MonoBehaviour:
   m_Name: NormalSlam
   m_EditorClassIdentifier: 
   Name: NormalSlam
-  CooldownTime: 0.1
+  CooldownTime: 0
   ActiveTime: 0.1
+  Damage: 1
+  Radius: 0
+  Luck: 1

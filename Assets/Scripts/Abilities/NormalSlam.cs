@@ -5,6 +5,12 @@ using UnityEngine;
 [CreateAssetMenu(menuName = "Abilities/NormalSlam")]
 public class NormalSlam : Ability
 {
+    public override void InitBaseStats()
+    {
+        Damage = 1;
+        Luck = 1;
+    }
+
     public override void Execute(GameObject target)
     {
         target.GetComponent<Hammer>()._hammerHitBox.gameObject.SetActive(true);
@@ -15,5 +21,4 @@ public class NormalSlam : Ability
     {
         target.GetComponent<Hammer>()._hammerHitBox.gameObject.SetActive(false);
     }
-
 }

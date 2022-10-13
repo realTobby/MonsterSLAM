@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+[DefaultExecutionOrder(1)]
 public class GameManager : MonoBehaviour
 {
     private static GameManager _instance;
@@ -12,8 +13,12 @@ public class GameManager : MonoBehaviour
 
     public WaveManager WaveManager;
     public UpgradeManager UpgradeManager;
-    public AbilityManager AbilityManager;
-    
+
+    public AbilityManager MainAbility;
+    public AbilityManager SecondaryAbility;
+
+    public RoomSpawner DungeonRoomSpawner;
+
     public int CurrentMonsterChain = 0;
     public int PlayerScore = 0;
 
@@ -45,7 +50,7 @@ public class GameManager : MonoBehaviour
 
         WaveManager = GetComponent<WaveManager>();
         UpgradeManager = GetComponent<UpgradeManager>();
-        AbilityManager = GetComponent<AbilityManager>();
+        //AbilityManager = GetComponent<AbilityManager>();
 
         InvokeRepeating("PlayBonusDecreaseAnimation", 0f, 1f);
     }
