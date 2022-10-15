@@ -5,7 +5,9 @@ using UnityEngine;
 
 public class FlyingHammerEntity : MonoBehaviour
 {
-    public int MaxBounces = 10;
+    public float Speed;
+
+    public int MaxBounces;
 
     List<Transform> AllMonsterTransforms;
 
@@ -78,8 +80,7 @@ public class FlyingHammerEntity : MonoBehaviour
         if(CurrentTarget != null)
         {
             moveDir = (CurrentTarget.position - transform.position).normalized;
-            _moveAmount = moveDir * PlayerStats.Instance.Stats.Speed;
-
+            _moveAmount = moveDir * Speed;
             transform.LookAt(CurrentTarget);
         }
         
@@ -98,7 +99,8 @@ public class FlyingHammerEntity : MonoBehaviour
     {
         if(GameManager.Instance.IsGamePaused == false)
         {
-            Vector3 moveForce = _moveAmount * (100 * 2 * Time.fixedDeltaTime);
+            flyingHammerRigidbody.velocity = Vector3.zero;
+            Vector3 moveForce = _moveAmount * (1000 * 2 * Time.fixedDeltaTime);
             flyingHammerRigidbody.AddForce(moveForce);
         }
         else

@@ -11,7 +11,9 @@ GameObject:
   - component: {fileID: 1673296198585794833}
   - component: {fileID: 2348457415797165748}
   - component: {fileID: 536934247142275710}
-  - component: {fileID: 8919077064175439147}
+  - component: {fileID: 1584268062911317073}
+  - component: {fileID: 1770741536243330909}
+  - component: {fileID: 3029384941599996218}
   m_Layer: 0
   m_Name: gem
   m_TagString: XPGEM
@@ -84,16 +86,46 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
---- !u!65 &8919077064175439147
-BoxCollider:
+--- !u!54 &1584268062911317073
+Rigidbody:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2050103933586086827}
+  serializedVersion: 2
+  m_Mass: 0.01
+  m_Drag: 0
+  m_AngularDrag: 0.05
+  m_UseGravity: 1
+  m_IsKinematic: 0
+  m_Interpolate: 1
+  m_Constraints: 0
+  m_CollisionDetection: 0
+--- !u!114 &1770741536243330909
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2050103933586086827}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6fb4bb00612a66d4a9ebd08ab183067c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  XPVALUE: 0
+  WasMagneticTriggered: 0
+--- !u!135 &3029384941599996218
+SphereCollider:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2050103933586086827}
   m_Material: {fileID: 0}
-  m_IsTrigger: 1
+  m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 0.0045724045, y: 0.008431728, z: 0.016539387}
-  m_Center: {x: 0.00002997905, y: -0.00023350149, z: -0.000059666334}
+  m_Radius: 0.0089374995
+  m_Center: {x: -0.000028117298, y: -0.000036273002, z: 0}

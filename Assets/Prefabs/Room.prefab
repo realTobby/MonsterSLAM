@@ -108,6 +108,8 @@ MonoBehaviour:
   NextRoomInterfacePosition: {x: 0, y: 0, z: 0}
   ExitPathStart: {x: 0, y: 0, z: 0}
   PlayerTeleportSpot: {x: 0, y: 0, z: 0}
+  IsTreasure: 0
+  PREFAB_REWARD: {fileID: 8862649539912453004, guid: d5cf0d7caa839ec42885dafd52b7b2fa, type: 3}
 --- !u!65 &3795640897447043628
 BoxCollider:
   m_ObjectHideFlags: 0

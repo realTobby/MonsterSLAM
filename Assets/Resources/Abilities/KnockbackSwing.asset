@@ -9,14 +9,12 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 6f5fcb2c71ed0de43a7ae29479de1b5c, type: 3}
-  m_Name: FlyingHammer
+  m_Script: {fileID: 11500000, guid: 550ef17becad58b41908e9cbe413d6ab, type: 3}
+  m_Name: KnockbackSwing
   m_EditorClassIdentifier: 
-  Name: FlyingHammer
+  icon: {fileID: 21300000, guid: 90b88e4901b369d4b99ea1f8a7bd9e25, type: 3}
+  Name: KnockbackSwing
   CooldownTime: 1
   ActiveTime: 5
-  Damage: 1
-  Radius: 0
+  Damage: 3
   Luck: 1
-  PREFAB_FLYING_HAMMER: {fileID: 6955548083856268690, guid: 02b4196f98a77ba4eaf88334896c9dcd, type: 3}
-  MaxBounces: 10

@@ -56,9 +56,6 @@ public class Hammer : MonoBehaviour
                 Move();
             }
         }
-        
-        
-        
     }
 
     private void RotateHammerTowardsMouse()
@@ -98,17 +95,16 @@ public class Hammer : MonoBehaviour
         {
             _hammerRigidbody.velocity = Vector3.zero;
         }
+
+        if (collision.transform.CompareTag("XPGEM"))
+        {
+            COIN_PICKUP.pitch = (Random.Range(0.6f, .9f));
+            COIN_PICKUP.Play();
+        }
     }
 
     private void OnTriggerEnter(Collider other)
     {
-        if (other.transform.CompareTag("XPGEM"))
-        {
-            COIN_PICKUP.pitch = (Random.Range(0.6f, .9f));
-            COIN_PICKUP.Play();
-            PlayerStats.Instance.Stats.CurrentXP++;
-            Destroy(other.gameObject);
-        }
 
         if(other.transform.CompareTag("RoomEnterTrigger"))
         {

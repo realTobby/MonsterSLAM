@@ -53,7 +53,18 @@ public class WaveManager : MonoBehaviour
         WaveCount++;
     }
 
-    private Vector3 RandomPositionInsideArena()
+    public Vector3 RandomPositionInsideArena(DungeonRoom room)
+    {
+        Vector3 arenaCenter = room.StartingPoint;
+        int roomW = room.Width;
+        int roomH = room.Height;
+
+        Vector3 pos = new Vector3(Random.Range((arenaCenter.x + 2) * 2, (arenaCenter.x + roomW - 2) * 2), 1, Random.Range((arenaCenter.z + 2) * 2, (arenaCenter.z + roomH - 2) * 2));
+
+        return pos;/*new Vector3(Random.Range(-14f, 12), 1, Random.Range(-16, 10));*/
+    }
+
+    public Vector3 RandomPositionInsideArena()
     {
         Vector3 arenaCenter = GameManager.Instance.DungeonRoomSpawner.CurrentRoom.GetComponent<DungeonRoom>().StartingPoint;
         int roomW = GameManager.Instance.DungeonRoomSpawner.CurrentRoom.GetComponent<DungeonRoom>().Width;
@@ -79,7 +90,7 @@ public class WaveManager : MonoBehaviour
 
     private void Update()
     {
-        UI_WAVECOUNT.text = "Wave: " + WaveCount;
+        UI_WAVECOUNT.text = "Room: " + WaveCount;
 
         CurrentMonsterCount = GameObject.FindGameObjectsWithTag("SpawnedMonster").Length;
 

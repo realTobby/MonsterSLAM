@@ -111,16 +111,14 @@ public class Monster : MonoBehaviour
 
             int luckyRerolls = GameManager.Instance.MainAbility.ability.Luck;
 
+            bool luckyThreshhold = Random.Range(0, 100) >= 60 ? true : false;
 
-            for (int i = 0; i < luckyRerolls; i++)
+            if (luckyThreshhold)
             {
-                int luckyThreshhold = Random.Range(0, 100);
-
-                if (luckyThreshhold >= 60)
-                {
-                    Instantiate(GameManager.Instance.PREFAB_XPGEM, this.transform.position, Quaternion.Euler(-90, 0, 90));
-                }
+                var xpobj = Instantiate(GameManager.Instance.PREFAB_XPGEM, new Vector3(this.transform.position.x, 4, this.transform.position.z), Quaternion.Euler(-90, 0, 90));
+                xpobj.GetComponent<XPGEM>().XPVALUE = luckyRerolls * 2;
             }
+
             var vfx = Instantiate(ExplodeEffect, this.transform.position, Quaternion.identity);
             GameManager.Instance.GainScore(1);
             GameManager.Instance.GainChainBonus();
