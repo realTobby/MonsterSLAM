@@ -29,6 +29,23 @@ public class Monster : MonoBehaviour
 
     public bool LeftPlayerTrigger = false;
 
+    private void OnCollisionEnter(Collision collision)
+    {
+        if (collision.transform.CompareTag("Hammer"))
+        {
+            LeftPlayerTrigger = false;
+            StartCoroutine(nameof(AttackPlayer));
+        }
+    }
+
+    private void OnCollisionExit(Collision collision)
+    {
+        if (collision.transform.CompareTag("Hammer"))
+        {
+            LeftPlayerTrigger = true;
+        }
+    }
+
     private void OnTriggerEnter(Collider other)
     {
         if (GameManager.Instance.IsGamePaused == false)
@@ -57,14 +74,7 @@ public class Monster : MonoBehaviour
                 HP -= GameManager.Instance.SecondaryAbility.ability.Damage;
             }
 
-            if (other.transform.CompareTag("Hammer"))
-            {
-                if (IsAttacking == false)
-                {
-                    LeftPlayerTrigger = false;
-                    StartCoroutine(nameof(AttackPlayer));
-                }
-            }
+            
         }
     }
 

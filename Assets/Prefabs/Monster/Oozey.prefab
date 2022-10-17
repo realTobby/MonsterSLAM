@@ -166,7 +166,7 @@ MonoBehaviour:
   MaxHP: 0
   HP: 0
   AttackDelay: 0.2
-  LeftPlayerTrigger: 0
+  LeftPlayerTrigger: 1
 --- !u!114 &5485951577744404868
 MonoBehaviour:
   m_ObjectHideFlags: 0
