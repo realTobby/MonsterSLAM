@@ -6,6 +6,8 @@ public class DungeonRoom : MonoBehaviour
 {
     // this script is on the PREFAB_ROOM
 
+    public bool ExitIsOpen = false;
+
     public bool RoomWasEntered = false;
 
     public int Width;
@@ -122,8 +124,13 @@ public class DungeonRoom : MonoBehaviour
 
     private void OpenExit()
     {
-        RoomCleared = true;
-        GAMEOBJECT_PATHEXIT.GetComponent<Animator>().Play("doorOpen");
+        if(ExitIsOpen == false)
+        {
+            ExitIsOpen = true;
+            RoomCleared = true;
+            GAMEOBJECT_PATHEXIT.GetComponent<Animator>().Play("doorOpen");
+        }
+        
     }
 
     private void CloseEntry()
@@ -163,6 +170,12 @@ public class DungeonRoom : MonoBehaviour
                     var centerOfRoom = new Vector3((StartingPoint.x + (Width / 2))*2, 2, (StartingPoint.z + (Height / 2))*2);
 
                     Instantiate(PREFAB_REWARD, centerOfRoom, Quaternion.identity);
+
+                    if(GameManager.Instance.WaveManager.WaveCount > 10)
+                    {
+                        OpenExit();
+                    }
+                    
 
                 }
             }

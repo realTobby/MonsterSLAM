@@ -58,10 +58,15 @@ public class AbilityManager : MonoBehaviour
             switch (CurrentState)
             {
                 case AbilityState.Ready:
+
+                    if (UI_ABILITY_IMAGE != null)
+                    {
+                        UI_ABILITY_IMAGE.fillAmount = 1;
+                    }
+
                     if (Input.GetKeyDown(Key) && EventSystem.current.IsPointerOverGameObject() == false && ability != null)
                     {
                         ability.Execute(GameManager.Instance.PlayerGameObject);
-                        //GameManager.Instance.SecondaryAbility.ability.Execute(GameManager.Instance.PlayerGameObject);
                         CurrentState = AbilityState.Active;
                         activeTime = ability.ActiveTime;
 
@@ -78,6 +83,11 @@ public class AbilityManager : MonoBehaviour
                     }
                     else
                     {
+                        if (UI_ABILITY_IMAGE != null)
+                        {
+                            UI_ABILITY_IMAGE.fillAmount = 0;
+                        }
+
                         CurrentState = AbilityState.Cooldown;
                         ability.EndAbility(GameManager.Instance.PlayerGameObject);
                         cooldownTime = ability.CooldownTime;
@@ -90,7 +100,7 @@ public class AbilityManager : MonoBehaviour
 
                         if (UI_ABILITY_IMAGE != null)
                         {
-                            UI_ABILITY_IMAGE.fillAmount += 1/cooldownTime * Time.deltaTime;
+                            UI_ABILITY_IMAGE.fillAmount += (1/cooldownTime * Time.deltaTime);
                         }
                     }
                     else

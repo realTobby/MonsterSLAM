@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class WaveManager : MonoBehaviour
 {
@@ -75,17 +76,6 @@ public class WaveManager : MonoBehaviour
         return pos;/*new Vector3(Random.Range(-14f, 12), 1, Random.Range(-16, 10));*/
     }
 
-    private void CheckForInput()
-    {
-        if(IsWaveCompleted == true)
-        {
-            if (Input.GetKeyDown(KeyCode.Space))
-            {
-                StartNextWave();
-            }
-        }
-    }
-
     public bool KilledAllMonsters = false;
 
     private void Update()
@@ -94,18 +84,25 @@ public class WaveManager : MonoBehaviour
 
         CurrentMonsterCount = GameObject.FindGameObjectsWithTag("SpawnedMonster").Length;
 
-        CheckForInput();
-
         if(IsWaveCompleted == false && CurrentMonsterCount == 0)
         {
             if(WaveCount > 0)
             {
+
                 GameManager.Instance.DungeonRoomSpawner.CurrentRoom.RoomCleared = true;
                 OnWaveEnd?.Invoke();
             }
             IsWaveCompleted = true;
             KilledAllMonsters = true;
         }
+
+
+        //if(WaveCount > 25)
+        //{
+        //    Debug.Log("If you want you can continue to play but there wont be anything else to see... you probably saw already everything!");
+        //    Debug.Log("Wow, you cleared 50 rooms! Honestly this must be boring at that point...Its so repetetive...If you found this message, then congratulations, you got the true ending!");
+        //    SceneManager.LoadScene(3);
+        //}
 
     }
 

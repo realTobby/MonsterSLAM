@@ -50,6 +50,7 @@ public class UpgradeManager : MonoBehaviour
 
     public void UpgradeHP()
     {
+        PlayerStats.Instance.Stats.MaxHP += 5;
         PlayerStats.Instance.Stats.HP = PlayerStats.Instance.Stats.MaxHP;
     }
 
@@ -67,7 +68,8 @@ public class UpgradeManager : MonoBehaviour
     public enum Abilities
     {
         FlyingHammer = 0,
-        KnockbackSwing = 1
+        KnockbackSwing = 1,
+        BackwardsSlam = 2
     }
 
     public bool IsTake = false;

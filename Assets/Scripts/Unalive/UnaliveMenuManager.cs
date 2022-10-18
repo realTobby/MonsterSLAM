@@ -6,8 +6,23 @@ using UnityEngine.SceneManagement;
 
 public class UnaliveMenuManager : MonoBehaviour, IPointerClickHandler
 {
+    private void Awake()
+    {
+
+        StartCoroutine(nameof(WaitTime));
+    }
+
+    public bool CanClick = false;
+
+    IEnumerator WaitTime()
+    {
+        yield return new WaitForSeconds(5);
+        CanClick = true;
+    }
+
     public void OnPointerClick(PointerEventData eventData)
     {
-        SceneManager.LoadScene(0);
+        if(CanClick == true)
+            SceneManager.LoadScene(0);
     }
 }

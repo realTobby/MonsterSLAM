@@ -9,12 +9,12 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 550ef17becad58b41908e9cbe413d6ab, type: 3}
-  m_Name: KnockbackSwing
+  m_Script: {fileID: 11500000, guid: c7c9209a8aedd8a41806db19f96b3192, type: 3}
+  m_Name: BackwardsSlam
   m_EditorClassIdentifier: 
-  icon: {fileID: 21300000, guid: 90b88e4901b369d4b99ea1f8a7bd9e25, type: 3}
-  Name: KnockbackSwing
-  CooldownTime: 5
+  icon: {fileID: 21300000, guid: 148e58722f569d343a80e6e0cdac57fc, type: 3}
+  Name: Backwards Slam
+  CooldownTime: 0.1
   ActiveTime: 0.1
-  Damage: 3
-  Luck: 25
+  Damage: 1
+  Luck: 1
