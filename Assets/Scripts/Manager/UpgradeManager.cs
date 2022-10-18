@@ -69,7 +69,8 @@ public class UpgradeManager : MonoBehaviour
     {
         FlyingHammer = 0,
         KnockbackSwing = 1,
-        BackwardsSlam = 2
+        BackwardsSlam = 2,
+        BombSlam = 3
     }
 
     public bool IsTake = false;
@@ -82,7 +83,7 @@ public class UpgradeManager : MonoBehaviour
         IsSwap = false;
         IsUpgrade = false;
 
-        int runeIndex = Random.Range(0, 3);
+        int runeIndex = Random.Range(0, 4);
 
         Abilities ability = (Abilities)runeIndex;
 

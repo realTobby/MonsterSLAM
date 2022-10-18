@@ -5,6 +5,8 @@ using UnityEngine;
 [RequireComponent(typeof(AudioSource))]
 public class HammerHitBox : MonoBehaviour
 {
+    public GameObject BOMB_PREFAB;
+
     public Hammer _hammer;
 
     public GameObject HitEffect;
@@ -26,7 +28,7 @@ public class HammerHitBox : MonoBehaviour
 
     private void Awake()
     {
-        _hammer = transform.parent.GetComponent<Hammer>();
+        //_hammer = transform.parent.GetComponent<Hammer>();
 
         _hammerSFX = GetComponent<AudioSource>();
     }
@@ -40,9 +42,19 @@ public class HammerHitBox : MonoBehaviour
             if(!other.transform.CompareTag("SpawnedMonster"))
             {
                 Instantiate(HitEffect, vfxSpawnPos, Quaternion.identity);
+
+
+
+            }
+            else
+            {
+                if (_hammer.IsAttackingWithBombs)
+                {
+                    var bombAttachment = Instantiate(BOMB_PREFAB, other.transform.position, Quaternion.identity);
+                    bombAttachment.transform.parent = other.transform;
+                }
             }
 
-            
             CameraShaker.Shake(.4f, 8f);
             _hammerSFX.pitch = (Random.Range(0.6f, .9f));
             _hammerSFX.Play();

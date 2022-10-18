@@ -7,6 +7,8 @@ using UnityEngine.EventSystems;
 [DefaultExecutionOrder(2000)]
 public class Hammer : MonoBehaviour
 {
+    public bool IsAttackingWithBombs = false;
+
     public AudioSource COIN_PICKUP;
 
     internal Animator _hammerAnimator;

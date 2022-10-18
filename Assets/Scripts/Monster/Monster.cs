@@ -46,15 +46,35 @@ public class Monster : MonoBehaviour
         }
     }
 
+    public GameObject BOMB_PREFAB;
+
+    public GameObject AttachedBomb = null;
+
     private void OnTriggerEnter(Collider other)
     {
         if (GameManager.Instance.IsGamePaused == false)
         {
-            Debug.Log("Collision with: " + other.transform.tag);
+            // explosion effect, attach bomb when exploded
+            if (other.transform.CompareTag("Bomb"))
+            {
+                AttachedBomb = Instantiate(BOMB_PREFAB, transform.position, Quaternion.identity);
+                AttachedBomb.transform.parent = this.transform;
+
+                HP -= GameManager.Instance.SecondaryAbility.ability.Damage;
+            }
+
+            //Debug.Log("Collision with: " + other.transform.tag);
             if (other.transform.CompareTag("HammerHitbox") || other.transform.CompareTag("FlyingHammer"))
             {
                 HP -= GameManager.Instance.MainAbility.ability.Damage;
                 //var vfx = Instantiate(ExplodeEffect, this.transform.position, Quaternion.identity);
+
+                if(other.transform.GetComponent<HammerHitBox>()._hammer.IsAttackingWithBombs)
+                {
+                    AttachedBomb = Instantiate(BOMB_PREFAB, other.transform.position, Quaternion.identity);
+                    AttachedBomb.transform.parent = this.transform;
+                }
+
             }
 
             if(other.transform.CompareTag("FlyingHammer"))
@@ -117,6 +137,12 @@ public class Monster : MonoBehaviour
     {
         if(HP <= 0)
         {
+            if (AttachedBomb != null)
+            {
+                AttachedBomb.transform.parent = null;
+                AttachedBomb.GetComponent<BombAttachment>().Explode();
+            }
+
             // lucky roll for xpgem
 
             int luckyRerolls = GameManager.Instance.MainAbility.ability.Luck;
@@ -132,6 +158,8 @@ public class Monster : MonoBehaviour
             var vfx = Instantiate(ExplodeEffect, this.transform.position, Quaternion.identity);
             GameManager.Instance.GainScore(1);
             GameManager.Instance.GainChainBonus();
+
+            
 
             Destroy(this.gameObject);
         }

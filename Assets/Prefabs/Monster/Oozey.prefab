@@ -167,6 +167,7 @@ MonoBehaviour:
   HP: 0
   AttackDelay: 0.2
   LeftPlayerTrigger: 1
+  BOMB_PREFAB: {fileID: 3776399350233329540, guid: 3c40eba8b6440d542945c210799dd5e5, type: 3}
 --- !u!114 &5485951577744404868
 MonoBehaviour:
   m_ObjectHideFlags: 0

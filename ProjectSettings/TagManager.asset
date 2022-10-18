@@ -16,6 +16,7 @@ TagManager:
   - Room
   - Reward
   - MagneticRadius
+  - Bomb
   layers:
   - Default
   - TransparentFX

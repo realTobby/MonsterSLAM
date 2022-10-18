@@ -11102,7 +11102,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e70c44055dfd5a7418411cab4304a905, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  ability: {fileID: 0}
+  ability: {fileID: 11400000, guid: 1422f38284069444e91ab18fc6856765, type: 2}
   UI_ABILITY_IMAGE: {fileID: 1434308378}
   cooldownTime: 0
   activeTime: 0
@@ -31480,6 +31480,14 @@ PrefabInstance:
       propertyPath: m_IsTrigger
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 5704222591142526052, guid: 5fccb32bc1fc0d842ae86cb8ad0f02fd, type: 3}
+      propertyPath: _hammer
+      value: 
+      objectReference: {fileID: 6194621744885186330}
+    - target: {fileID: 5704222591142526052, guid: 5fccb32bc1fc0d842ae86cb8ad0f02fd, type: 3}
+      propertyPath: BOMB_PREFAB
+      value: 
+      objectReference: {fileID: 3776399350233329540, guid: 3c40eba8b6440d542945c210799dd5e5, type: 3}
     - target: {fileID: 6194621744885186321, guid: 5fccb32bc1fc0d842ae86cb8ad0f02fd, type: 3}
       propertyPath: PLAYERHP_UI
       value: 
@@ -31611,6 +31619,17 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+--- !u!114 &6194621744885186330 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 769893940881096888, guid: 5fccb32bc1fc0d842ae86cb8ad0f02fd, type: 3}
+  m_PrefabInstance: {fileID: 6116477880978775055}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 317378661}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4e4cd72e536464b419672ed7c6eaac8d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &8203914850942994234
 PrefabInstance:
   m_ObjectHideFlags: 0

@@ -9,13 +9,12 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c465993efbae07148894cedeccbd3da9, type: 3}
-  m_Name: PlayerStats
+  m_Script: {fileID: 11500000, guid: 7f19a6a603b43564bb4e2705ee6239ae, type: 3}
+  m_Name: BombSlam
   m_EditorClassIdentifier: 
-  NextLevelXP: 630
-  CurrentXP: 186
-  MaxHP: 15
-  HP: 15
-  Durability: 1
-  Speed: 15
+  icon: {fileID: 21300000, guid: 02b293ed362e535409eff6c1ad862abc, type: 3}
+  Name: Bomb Slam
+  CooldownTime: 2
+  ActiveTime: 0.3
   Damage: 1
+  Luck: 1
