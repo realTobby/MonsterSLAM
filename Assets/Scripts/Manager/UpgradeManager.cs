@@ -82,7 +82,7 @@ public class UpgradeManager : MonoBehaviour
         IsSwap = false;
         IsUpgrade = false;
 
-        int runeIndex = Random.Range(0, 2);
+        int runeIndex = Random.Range(0, 3);
 
         Abilities ability = (Abilities)runeIndex;
 
