@@ -1,12 +1,12 @@
-Game Code,by Kordesii,from Berlin
-Credits Scene,by ThKattanek,from Berlin
-3D Floor Tile Model,by AurynSky,https://opengameart.org/content/dungeon-low-poly-toon-battle-arena-tower-defense-pack
-3D Monster Model "Oozey",by Morphs,https://opengameart.org/content/oozey-the-slime
-3D Hammer Model,by yd,https://opengameart.org/content/hammer
-3D Gem Model,by rubberduck,https://opengameart.org/content/3d-collectable-pack
-Background Music "Dark Ambience Loop",by qubodup,https://opengameart.org/content/dark-ambience-loop
-UI Background Image,by kindland,https://opengameart.org/content/login-box
-Soundeffects,by SFXR.me,https://sfxr.me/
-Main Menu Start Bell Sound,by Specter5053,https://opengameart.org/content/death-bell
-Death Sound Effects,by qubodup,https://opengameart.org/content/impact
-Game Made for The Monster Mash Game Jam,by Ian Lomas,https://itch.io/jam/the-monster-mash-jam
+Game Code,Kordesii,from Berlin
+Credits Scene,ThKattanek,from Berlin
+3D Floor Tile Model,AurynSky,https://opengameart.org/content/dungeon-low-poly-toon-battle-arena-tower-defense-pack
+3D Monster Model "Oozey",Morphs,https://opengameart.org/content/oozey-the-slime
+3D Hammer Model,yd,https://opengameart.org/content/hammer
+3D Gem Model,rubberduck,https://opengameart.org/content/3d-collectable-pack
+Background Music "Dark Ambience Loop",qubodup,https://opengameart.org/content/dark-ambience-loop
+UI Background Image,kindland,https://opengameart.org/content/login-box
+Soundeffects,SFXR.me,https://sfxr.me/
+Main Menu Start Bell Sound,Specter5053,https://opengameart.org/content/death-bell
+Death Sound Effects,qubodup,https://opengameart.org/content/impact
+Game Made for The Monster Mash Game Jam,Ian Lomas,https://itch.io/jam/the-monster-mash-jam
