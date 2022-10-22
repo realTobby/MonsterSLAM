@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 [DefaultExecutionOrder(1)]
 public class GameManager : MonoBehaviour
@@ -28,6 +29,8 @@ public class GameManager : MonoBehaviour
 
     public GameObject PREFAB_XPGEM;
 
+    public RunStats CurrentRunStats;
+
     public bool IsGamePaused = false;
 
     public void PauseGame()
@@ -43,6 +46,9 @@ public class GameManager : MonoBehaviour
     private void Awake()
     {
         _instance = this;
+
+        CurrentRunStats = new RunStats();
+
 
         PlayerStats.Instance.OnLevelUp += PauseGame;
 
@@ -103,6 +109,21 @@ public class GameManager : MonoBehaviour
         StartCoroutine(nameof(ChainTimer));
     }
 
+    public void EndRun()
+    {
+        PlayerPrefs.SetString("LastRunStatsJSON", CurrentRunStats.GetJsonString());
+        PlayerPrefs.Save();
+
+        // save all shit to PlayerPrefs
+        // load unalive screen
+        SceneManager.LoadScene(3);
+        // show stats
+        // let user pick a name
+        // save that shit to PlayerPrefs
+
+        //show highscores in mainmenu
+    }
+
     public void GainChainBonus()
     {
         CurrentMonsterChain++;
@@ -120,6 +141,7 @@ public class GameManager : MonoBehaviour
 
     private void UpdateMonsterChainBonus()
     {
+        CurrentRunStats.MonstersKilled += 1;
         UI_MONSTER_BONUS.text = "x" + CurrentMonsterChain.ToString();
 
         if (CurrentMonsterChain > 0)
@@ -135,6 +157,7 @@ public class GameManager : MonoBehaviour
     public void GainScore(int score)
     {
         PlayerScore += score * CurrentMonsterChain > 0 ? CurrentMonsterChain : 1;
+        CurrentRunStats.Score = PlayerScore;
     }
 
     

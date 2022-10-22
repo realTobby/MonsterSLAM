@@ -8,6 +8,18 @@ public class UnaliveMenuManager : MonoBehaviour, IPointerClickHandler
 {
     private void Awake()
     {
+        RunStats lastStats = new RunStats();
+        lastStats.LoadStats(PlayerPrefs.GetString("LastRunStatsJSON"));
+        lastStats.PlayerName = "Kordesii";
+
+        PlayerPrefs.SetString("LastRunStatsJSON", lastStats.GetJsonString());
+
+        HighscoreEntry pastRuns = new HighscoreEntry();
+        pastRuns.LoadStats(PlayerPrefs.GetString("PastRunsJSON"));
+        pastRuns.PastRuns.Add(lastStats);
+        PlayerPrefs.SetString("PastRunsJSON", pastRuns.GetJsonString());
+
+        PlayerPrefs.Save();
 
         StartCoroutine(nameof(WaitTime));
     }
@@ -16,7 +28,7 @@ public class UnaliveMenuManager : MonoBehaviour, IPointerClickHandler
 
     IEnumerator WaitTime()
     {
-        yield return new WaitForSeconds(5);
+        yield return new WaitForSeconds(2);
         CanClick = true;
     }
 
