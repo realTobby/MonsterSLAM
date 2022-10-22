@@ -11209,6 +11209,16 @@ MonoBehaviour:
   - {fileID: 8300000, guid: e82f9d54e742b67459d3e6de60c0a2dc, type: 3}
   PlayerGameObject: {fileID: 317378661}
   PREFAB_XPGEM: {fileID: 2050103933586086827, guid: bf6d304a4b5af1a4984e7752927dbc73, type: 3}
+  CurrentRunStats:
+    PlayerName: 
+    Score: 0
+    SecondaryRuneName: 
+    MonstersKilled: 0
+    RoomsCleared: 0
+    HighestCombo: 0
+    Damage: 0
+    HP: 0
+    Luck: 0
   IsGamePaused: 0
   ChainIsRunning: 0
 --- !u!4 &762177733
@@ -11238,7 +11248,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e70c44055dfd5a7418411cab4304a905, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  ability: {fileID: 11400000, guid: 1422f38284069444e91ab18fc6856765, type: 2}
+  ability: {fileID: 0}
   UI_ABILITY_IMAGE: {fileID: 1434308378}
   cooldownTime: 0
   activeTime: 0
@@ -11510,7 +11520,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 794456913}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 762177732}
+        m_TargetAssemblyTypeName: GameManager, Assembly-CSharp
+        m_MethodName: EndRun
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &794456913
 MonoBehaviour:
   m_ObjectHideFlags: 0

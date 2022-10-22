@@ -4,7 +4,7 @@ using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.SceneManagement;
 
-public class UnaliveMenuManager : MonoBehaviour, IPointerClickHandler
+public class UnaliveMenuManager : MonoBehaviour
 {
     private void Awake()
     {
@@ -24,6 +24,11 @@ public class UnaliveMenuManager : MonoBehaviour, IPointerClickHandler
         StartCoroutine(nameof(WaitTime));
     }
 
+    public void GoToMain()
+    {
+        SceneManager.LoadScene(0);
+    }
+
     public bool CanClick = false;
 
     IEnumerator WaitTime()
@@ -32,9 +37,4 @@ public class UnaliveMenuManager : MonoBehaviour, IPointerClickHandler
         CanClick = true;
     }
 
-    public void OnPointerClick(PointerEventData eventData)
-    {
-        if(CanClick == true)
-            SceneManager.LoadScene(0);
-    }
 }

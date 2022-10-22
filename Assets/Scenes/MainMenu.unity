@@ -466,7 +466,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &316459165
 RectTransform:
   m_ObjectHideFlags: 0
@@ -731,6 +731,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _hammerStart: {fileID: 3469287836837735564}
+  PREFAB_HIGHSCORE_ENTRY: {fileID: 26267121794859360, guid: 679c1ae8ab154d14486666ff6a7be0ce, type: 3}
+  UI_HIGHSCORE_CONTENT: {fileID: 1378865617}
+  UI_HIGHSCORE_WINDOW: {fileID: 316459164}
 --- !u!4 &995459400
 Transform:
   m_ObjectHideFlags: 0
@@ -1163,7 +1166,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
   m_Color: {r: 0, g: 0, b: 0, a: 0}
-  m_RaycastTarget: 1
+  m_RaycastTarget: 0
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
   m_OnCullStateChanged:

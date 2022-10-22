@@ -21,23 +21,23 @@ public class MainMenu : MonoBehaviour
 
     public void LoadHighscore()
     {
-        HighscoreEntry pastRuns = new HighscoreEntry();
-        pastRuns.LoadStats(PlayerPrefs.GetString("PastRunsJSON"));
+        //HighscoreEntry pastRuns = new HighscoreEntry();
+        //pastRuns.LoadStats(PlayerPrefs.GetString("PastRunsJSON"));
 
-        foreach(var item in pastRuns.PastRuns)
-        {
-            Debug.Log("Past run!");
+        //foreach(var item in pastRuns.PastRuns)
+        //{
+        //    Debug.Log("Past run!");
             
-            var newElement = Instantiate(PREFAB_HIGHSCORE_ENTRY, this.transform.position, Quaternion.identity);
-            newElement.transform.parent = UI_HIGHSCORE_CONTENT.transform;
-            newElement.GetComponent<HighscoreElement>().Init(item.PlayerName, item.Score);
-            UI_HIGHSCORE_WINDOW.SetActive(true);
-        }
+        //    var newElement = Instantiate(PREFAB_HIGHSCORE_ENTRY, this.transform.position, Quaternion.identity);
+        //    newElement.transform.parent = UI_HIGHSCORE_CONTENT.transform;
+        //    newElement.GetComponent<HighscoreElement>().Init(item.PlayerName, item.Score);
+        //    UI_HIGHSCORE_WINDOW.SetActive(true);
+        //}
 
-        // read json <list>
-        // iterate
-        // instantiate PREFAB
-        // parent to highscoreScrollview
+        //// read json <list>
+        //// iterate
+        //// instantiate PREFAB
+        //// parent to highscoreScrollview
     }
 
     private void Awake()
